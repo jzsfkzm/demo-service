@@ -1,0 +1,30 @@
+version: "3"
+services:
+  redis:
+    image: redis:4.0.14-alpine
+    ports:
+      - 6379:6379
+    networks:
+      demo:
+        aliases:
+          - redis.demo.docker
+          - redis
+
+  s3:
+    image: minio/minio:RELEASE.2022-02-01T18-00-14Z
+    ports:
+      - 9000:9000
+    networks:
+      demo:
+        aliases:
+          - s3.demo.docker
+          - s3
+    environment:
+      MINIO_ROOT_USER: "not-a-real-id"
+      MINIO_ROOT_PASSWORD: "not-a-real-key"
+      MINIO_KMS_SECRET_KEY: "minio:/KOfihJwYHRz25Q1VCSPxYVBP8lC+YvhURlxajF3TYk="
+    command: server /data
+
+networks:
+  demo:
+    driver: bridge
