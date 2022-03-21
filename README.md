@@ -15,7 +15,7 @@ simple setup of Node.js & React.
 ## Todo
 
 ✅ ground work
-❌ api endpoint listing jobs
+✅ api endpoint listing jobs
 ❌ api endpoint adding job
 ❌ api endpoint for downloading a pdf
 ✅ worker doing the job
