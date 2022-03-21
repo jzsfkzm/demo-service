@@ -16,7 +16,7 @@ simple setup of Node.js & React.
 
 ✅ ground work
 ✅ api endpoint listing jobs
-❌ api endpoint adding job
+✅ api endpoint adding job
 ❌ api endpoint for downloading a pdf
 ✅ worker doing the job
 ❌ web socket publishing job state change

@@ -4,6 +4,7 @@ import config from "config";
 import express from "express";
 
 const app = express();
+app.use(express.json());
 
 app.get("/healthcheck", (_, response) => {
   response
@@ -28,6 +29,15 @@ app.get("/jobs", async (_, response) => {
         };
       })
     );
+});
+
+app.post("/jobs", async (request, response) => {
+  const pdfQueue = new Bull("pdf-generator", config.get("redis"));
+  pdfQueue.add({
+    pair: request.body.pair,
+  });
+
+  response.status(200).header("Content-Type", "application/json").json({});
 });
 
 export default app;
