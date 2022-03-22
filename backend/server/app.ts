@@ -4,6 +4,8 @@ import config from "config";
 import cors from "cors";
 import express from "express";
 
+import { signedUrl } from "../lib/client/s3";
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -13,6 +15,13 @@ app.get("/healthcheck", (_, response) => {
     .status(200)
     .header("Content-Type", "application/json")
     .json({ healthy: true });
+});
+
+app.get("/jobs/:id", async (request, response) => {
+  const filename = `${request.params.id}.pdf`;
+  const url = await signedUrl(filename);
+
+  response.redirect(url);
 });
 
 app.get("/jobs", async (_, response) => {
