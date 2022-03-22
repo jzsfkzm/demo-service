@@ -2,7 +2,7 @@ import * as original from "bull";
 jest.mock("bull");
 import request from "supertest";
 
-import app from ".";
+import app from "./app";
 
 type FakeJob = {
   id: number;

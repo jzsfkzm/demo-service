@@ -6,8 +6,9 @@ simple setup of Node.js & React.
 ## Development
 
 `docker-compose up`
-`yarn run worker:dev`
-`yarn run server:dev`
+`cd backend && yarn run worker:dev`
+`cd backend && yarn run server:dev`
+`cd frontend && yarn run start`
 
 ## Running tests
 `yarn run test:dev`
@@ -20,9 +21,9 @@ simple setup of Node.js & React.
 ❌ api endpoint for downloading a pdf
 ✅ worker doing the job
 ❌ web socket publishing job state change
-❌ frontend listing jobs
+✅ frontend listing jobs
 ❌ frontend adding a job
-❌ frondent listening on job state changes
+❌ frontend listening on job state changes
 ❌ frontend downloading a job
 
 ❌ todo

@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import app from "./";
+import app from "./app";
 
 describe("GET /healthcheck", function () {
   it("responds with json", function (done) {
