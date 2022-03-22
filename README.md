@@ -18,13 +18,13 @@ simple setup of Node.js & React.
 ✅ ground work
 ✅ api endpoint listing jobs
 ✅ api endpoint adding job
-❌ api endpoint for downloading a pdf
+✅ api endpoint for downloading a pdf
 ✅ worker doing the job
 ❌ web socket publishing job state change
 ✅ frontend listing jobs
 ❌ frontend adding a job
 ❌ frontend listening on job state changes
-❌ frontend downloading a job
+✅ frontend downloading a job
 
 ❌ todo
 ✅ done

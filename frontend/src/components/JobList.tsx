@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchJobs } from '../store/jobs';
 import { RootState } from '../store';
+import DownloadLink from "./DownloadLink";
 
 const JobList: React.FunctionComponent = () => {
   const { jobs, loading } = useSelector((state: RootState) => state.jobs);
@@ -34,7 +35,7 @@ const JobList: React.FunctionComponent = () => {
                 {job.id}
               </TableCell>
               <TableCell align="right">{job.pair}</TableCell>
-              <TableCell align="right">download</TableCell>
+              <TableCell align="right"><DownloadLink job={job} /></TableCell>
             </TableRow>
           ))}
         </TableBody>

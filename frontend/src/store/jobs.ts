@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-type Job = {
+export type Job = {
   id: number;
   pair: string;
+  state: string;
 };
 
 type State = {
