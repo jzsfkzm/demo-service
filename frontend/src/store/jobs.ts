@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+export const API_URL = 'http://localhost:8080';
+
 export type Job = {
   id: number;
   pair: string;
@@ -15,16 +17,26 @@ type State = {
 
 export const fetchJobs = createAsyncThunk(
   'jobs/fetch',
-  async () => {
-    const response = await axios.get('http://localhost:8080/jobs');
+  async (_: boolean) => {
+    const response = await axios.get(`${API_URL}/jobs`);
     return response.data;
   }, {
-    condition: (arg: any, { getState }) => {
+    condition: (force: boolean, { getState }) => {
       const { jobs } = getState() as unknown as Record<string, State>;
-      if (jobs.loading || jobs.loaded) {
+      if (!force && (jobs.loading || jobs.loaded)) {
         return false;
       }
     }
+  }
+);
+
+export const createJob = createAsyncThunk(
+  'jobs/create',
+  async (pair: string) => {
+    const response = await axios.post(`${API_URL}/jobs`, {
+      pair
+    });
+    return response.data;
   }
 );
 

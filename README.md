@@ -22,7 +22,7 @@ simple setup of Node.js & React.
 ✅ worker doing the job
 ❌ web socket publishing job state change
 ✅ frontend listing jobs
-❌ frontend adding a job
+✅ frontend adding a job
 ❌ frontend listening on job state changes
 ✅ frontend downloading a job
 

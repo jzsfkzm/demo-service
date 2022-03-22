@@ -11,7 +11,7 @@ const JobList: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (jobs.length === 0 && !loading) {
-      dispatch(fetchJobs(null));
+      dispatch(fetchJobs(false));
     }
   });
 

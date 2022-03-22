@@ -1,6 +1,7 @@
-import { AppBar, Button, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, Grid, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import './App.css';
+import JobCreator from './components/JobCreator';
 import JobList from './components/JobList';
 
 const App: React.FunctionComponent = () => {
@@ -11,10 +12,14 @@ const App: React.FunctionComponent = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
             Demo App
           </Typography>
-          <Button color="inherit">Create new job</Button>
         </Toolbar>
       </AppBar>
       <Container sx={{ mt: 4 }}>
+        <Grid container direction="row" justifyContent="flex-end">
+          <Grid item xs={6} sx={{ textAlign: "right" }}>
+            <JobCreator />
+          </Grid>
+        </Grid>
         <JobList />
       </Container>
     </div>
