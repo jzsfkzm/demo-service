@@ -1,7 +1,8 @@
 import { Paper, Table, TableHead, TableCell, TableRow, TableBody, TableContainer } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchJobs } from '../store/jobs';
+import { w3cwebsocket as W3cWebSocket } from "websocket";
+import { fetchJobs, setJobState, WS_API_URL } from '../store/jobs';
 import { RootState } from '../store';
 import DownloadLink from "./DownloadLink";
 
@@ -14,6 +15,14 @@ const JobList: React.FunctionComponent = () => {
       dispatch(fetchJobs(false));
     }
   });
+
+  useEffect(() => {
+    const client = new W3cWebSocket(WS_API_URL);
+
+    client.onmessage = function (e) {
+      dispatch(setJobState(JSON.parse(e.data.toString())));
+    };
+  }, []);
 
   return (
     <TableContainer component={Paper}>

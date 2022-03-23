@@ -3,12 +3,15 @@ import Bull, { Job } from "bull";
 import config from "config";
 import cors from "cors";
 import express from "express";
+import expressWs from "express-ws";
 
 import { signedUrl } from "../lib/client/s3";
 
-const app = express();
-app.use(express.json());
-app.use(cors());
+const expressApp = express();
+expressApp.use(express.json());
+expressApp.use(cors());
+const expressWsInstance = expressWs(expressApp);
+const { app } = expressWsInstance;
 
 app.get("/healthcheck", (_, response) => {
   response
@@ -49,6 +52,14 @@ app.post("/jobs", async (request, response) => {
   });
 
   response.status(200).header("Content-Type", "application/json").json({});
+});
+
+app.ws("/", (ws) => {
+  ws.on("message", (message) => {
+    expressWsInstance.getWss().clients.forEach((client) => {
+      client.send(message);
+    });
+  });
 });
 
 export default app;

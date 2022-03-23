@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:8080';
+export const API_HOST = 'localhost:8080';
+export const HTTP_API_URL = `http://${API_HOST}`;
+export const WS_API_URL = `ws://${API_HOST}`;
 
 export type Job = {
   id: number;
@@ -18,7 +20,7 @@ type State = {
 export const fetchJobs = createAsyncThunk(
   'jobs/fetch',
   async (_: boolean) => {
-    const response = await axios.get(`${API_URL}/jobs`);
+    const response = await axios.get(`${HTTP_API_URL}/jobs`);
     return response.data;
   }, {
     condition: (force: boolean, { getState }) => {
@@ -33,7 +35,7 @@ export const fetchJobs = createAsyncThunk(
 export const createJob = createAsyncThunk(
   'jobs/create',
   async (pair: string) => {
-    const response = await axios.post(`${API_URL}/jobs`, {
+    const response = await axios.post(`${HTTP_API_URL}/jobs`, {
       pair
     });
     return response.data;
@@ -47,7 +49,20 @@ const slice = createSlice({
     loading: false,
     loaded: false
   } as State,
-  reducers: {},
+  reducers: {
+    setJobState(state, action) {
+      state.jobs = state.jobs.map((job) => {
+        if (job.id !== action.payload.id) {
+          return job;
+        }
+
+        return {
+          ...job,
+          state: action.payload.state
+        };
+      });
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state, action) => {
@@ -58,4 +73,5 @@ const slice = createSlice({
       });
   }
 });
+export const { setJobState } = slice.actions;
 export default slice.reducer;
