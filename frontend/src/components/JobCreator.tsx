@@ -24,11 +24,13 @@ const JobCreator: React.FunctionComponent = () => {
         value={pair}
         label="Pair"
         onChange={handleChange}
+        size="small"
+        sx={{ marginRight: "10px" }}
       >
         <MenuItem value="btcusdt">BTCUSDT</MenuItem>
         <MenuItem value="ethusdt">ETHUSDT</MenuItem>
       </Select>
-      <Button color="primary" onClick={handleCreateJob}>Create job</Button>
+      <Button color="primary" variant="contained" onClick={handleCreateJob}>Create job</Button>
     </React.Fragment>
   )
 };

@@ -25,31 +25,36 @@ const JobList: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="right">Pair</TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {jobs.map((job) => (
-            <TableRow
-              key={job.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {job.id}
-              </TableCell>
-              <TableCell align="right">{job.pair}</TableCell>
-              <TableCell align="right"><DownloadLink job={job} /></TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <React.Fragment>
+      {jobs.length === 0 && "No jobs found"}
+      {jobs.length > 0 && (
+      <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">Pair</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {jobs.map((job) => (
+                <TableRow
+                  key={job.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {job.id}
+                  </TableCell>
+                  <TableCell align="right">{job.pair}</TableCell>
+                  <TableCell align="right"><DownloadLink job={job} /></TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </React.Fragment>
   )
 };
 

@@ -14,9 +14,9 @@ const App: React.FunctionComponent = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container sx={{ mt: 4 }}>
+      <Container sx={{ mt: 4, mb: 4 }}>
         <Grid container direction="row" justifyContent="flex-end">
-          <Grid item xs={6} sx={{ textAlign: "right" }}>
+          <Grid item xs={6} sx={{ textAlign: "right", mb: 4 }}>
             <JobCreator />
           </Grid>
         </Grid>
