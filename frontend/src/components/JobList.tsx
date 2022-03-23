@@ -22,7 +22,7 @@ const JobList: React.FunctionComponent = () => {
     client.onmessage = function (e) {
       dispatch(setJobState(JSON.parse(e.data.toString())));
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <React.Fragment>
