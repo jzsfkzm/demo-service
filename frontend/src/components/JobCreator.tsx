@@ -5,7 +5,7 @@ import { createJob, fetchJobs } from "../store/jobs";
 
 const JobCreator: React.FunctionComponent = () => {
   const [pair, setPair] = React.useState('btcusdt');
-  const dispatch = useAppThunkDispatch()
+  const dispatch = useAppThunkDispatch();
 
   const handleChange = (event: SelectChangeEvent) => {
     setPair(event.target.value);

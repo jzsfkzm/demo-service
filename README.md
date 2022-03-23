@@ -11,7 +11,8 @@ simple setup of Node.js & React.
 `cd frontend && yarn run start`
 
 ## Running tests
-`yarn run test:dev`
+`cd backend && yarn run test:dev`
+`cd frontend && yarn run test`
 
 ## Todo
 
@@ -20,11 +21,12 @@ simple setup of Node.js & React.
 ✅ api endpoint adding job
 ✅ api endpoint for downloading a pdf
 ✅ worker doing the job
-❌ web socket publishing job state change
+✅ web socket publishing job state change
 ✅ frontend listing jobs
 ✅ frontend adding a job
-❌ frontend listening on job state changes
+✅ frontend listening on job state changes
 ✅ frontend downloading a job
+❌ increase test coverage
 
 ❌ todo
 ✅ done
