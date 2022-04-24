@@ -25,6 +25,48 @@ services:
       MINIO_KMS_SECRET_KEY: "minio:/KOfihJwYHRz25Q1VCSPxYVBP8lC+YvhURlxajF3TYk="
     command: server /data
 
+  server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.server
+    depends_on:
+      - redis
+      - s3
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      demo:
+    command: yarn run server:dev
+
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.worker
+    depends_on:
+      - redis
+      - s3
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      demo:
+    command: ./worker.sh
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - server
+      - worker
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/src/app
+    networks:
+      demo:
+
 networks:
   demo:
     driver: bridge

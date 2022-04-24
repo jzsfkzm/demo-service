@@ -10,12 +10,6 @@ can communicate with.
 
 `docker-compose up`
 
-`cd backend && yarn run worker:dev`
-
-`cd backend && yarn run server:dev`
-
-`cd frontend && yarn run start`
-
 ## Running tests
 `cd backend && yarn run test:dev`
 

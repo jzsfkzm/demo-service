@@ -1,12 +1,13 @@
 {
-  "redis": "redis://redis.demo.docker:6379",
+  "redis": "redis://redis:6379",
   "s3": {
     "options": {
-      "endpoint": "http://s3.demo.docker:9000",
+      "endpoint": "http://s3:9000",
       "accessKeyId": "not-a-real-id",
       "secretAccessKey": "not-a-real-key",
       "s3ForcePathStyle": true
     } ,
     "bucket": "generated"
-  }
+  },
+  "server": "ws://server:8080"
 }

@@ -27,7 +27,7 @@ const pdfStream = (imageName: string): stream.Duplex => {
 };
 
 const pdfQueue = new Bull("pdf-generator", config.get("redis"));
-const client = new W3cWebSocket("ws://localhost:8080");
+const client = new W3cWebSocket(config.get("server"));
 
 const sendJobState = (id: JobId, state: string) => {
   client.send(JSON.stringify({ id: id.toString(), state }));

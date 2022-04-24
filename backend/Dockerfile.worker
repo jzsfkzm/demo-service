@@ -1,0 +1,23 @@
+FROM ubuntu
+
+RUN apt-get update
+RUN apt-get install --yes curl \
+  nodejs \
+  build-essential \
+  xvfb \
+  npm \
+  libgtkextra-dev \
+  libgconf2-dev \
+  libnss3 \
+  libasound2 \
+  libxtst-dev \
+  libxss1
+RUN npm i -g yarn
+
+WORKDIR /usr/src/app
+RUN mkdir /usr/src/app/node_modules
+COPY yarn.lock .
+COPY package.json .
+RUN yarn install
+
+EXPOSE 8080
