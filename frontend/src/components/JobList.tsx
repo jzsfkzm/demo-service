@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { w3cwebsocket as W3cWebSocket } from "websocket";
 import { fetchJobs, setJobState, WS_API_URL } from '../store/jobs';
-import { RootState } from '../store';
+import { RootState, ThunkAppDispatch } from '../store';
 import DownloadLink from "./DownloadLink";
 
 const JobList: React.FunctionComponent = () => {
   const { jobs, loading } = useSelector((state: RootState) => state.jobs);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<ThunkAppDispatch>()
 
   useEffect(() => {
     if (jobs.length === 0 && !loading) {
