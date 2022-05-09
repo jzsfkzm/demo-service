@@ -1,4 +1,5 @@
 {
+  "logLevel": "debug",
   "redis": "redis://redis:6379",
   "s3": {
     "options": {
